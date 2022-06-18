@@ -2,11 +2,16 @@ const productsEl = document.querySelector(".products");
 const cartItemsEl = document.querySelector(".cart-items");
 const subtotalEl = document.querySelector(".subtotal");
 const totalItemsInCartEl = document.querySelector(".total-items-in-cart");
+const porductsListEl = document.querySelector(".products-list");
+const seeMoreBtn = document.querySelector(".seeMore");
+const description = document.querySelector(".displayDescription");
+
+
 
 function renderProdcuts() {
   products.forEach((product) => {
     productsEl.innerHTML += `
-            <div class="item">
+            <div class="item   product-box ">
                 <div class="item-container">
                     <div class="item-img">
                         <img src="${product.imgSrc}" alt="${product.name}">
@@ -117,4 +122,126 @@ function changeNumberOfUnits(action, id) {
 
   updateCart();
 }
+
+
+
+
+seeMoreBtn.addEventListener('click', () => {
+porductsListEl.scrollIntoView({ behavior: "smooth" })
+})
+
+
+var userName=localStorage.getItem("uName")
+if (! userName ){
+  description.innerHTML +=`
+  there are new  Summer T-shirt
+   `;
+}
+else{
+  description.innerHTML +=`
+ Hello ${userName} there are new  Summer T-shirt
+   `;
+}
+
+function goBack() {
+  location.href = "login.html"
+  window.localStorage.clear();
+}
+
+var images = ["./img/1.png","./img/4.png","./img/6.png"];
+
+
+var i = 0;
+
+function startSlider() {
+
+setInterval(function () {
+    i++;
+    if (i > images.length-1) {
+    i = 0
+    }
+    document.getElementById("show").src = images[i];
+  }, 3000);
+}
+
+
+
+// var images2 = ["./img/t1.png","./img/t4.png","./img/t2.png"];
+// function immm(){
+
+//   setInterval(function(){
+//     i++;
+//     if (i > images2.length-1) {
+//     i = 0
+//     }
+//     if(i=0){
+//       document.getElementsByClassName("product")[0].src=images2[i+2]
+//       document.getElementsByClassName("product")[2].src=images2[i]
+  
+//     }
+
+//     // document.getElementsByClassName("product")[1].src=images2[]
+//   },3000)
+  
+// }
+
+
+
+// var i=-1
+// var p
+//     function play(){
+//     p= setInterval(set,3000)
+//     }
+
+// function set()
+//   {
+//       i++
+//       if( i >=0 && i<2)
+//           {
+//           document.getElementsByClassName("product")[i].src= "2.jpg"
+//           setTimeout(done, 3000);
+//           }
+//       else{
+//             i= -1
+//           }
+//   }  
+//   function done(){
+//             document.getElementsByClassName("product")[i].src= "1.jpg"} 
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function ChangeBgColor(c)
+{
+  document.querySelector(".changeColor").style.backgroundColor=c;
+
+}
+
+function search(){
+  let input = document.getElementById('searchOnProduct').value
+  input = input.toLowerCase();
+  let x = document.getElementsByClassName('product-box');
+
+  for (i = 0; i < x.length; i++) {
+      if (!x[i].innerHTML.toLowerCase().includes(input)) {
+          x[i].style.display = "none";
+      } else {
+          x[i].style.display = "list-item";
+      }
+  }
+}
+
 
